@@ -60,8 +60,16 @@ namespace GjkEvent.Controllers
         public async Task<IActionResult> Register(User user)
         {
             user.QrCode = RandomStringGenerator.RandomString(16);
-            _context.Add(user);
-            await _context.SaveChangesAsync();
+            if (!await _context.Users.Where(u => u.Username == user.Username && u.Password == user.Password).AnyAsync())
+            {
+                _context.Add(user);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                ViewBag.Message = "Oops, a user with these fields already exists!";
+                return View();
+            }
             return RedirectToAction("Index", "Home");
         }
 

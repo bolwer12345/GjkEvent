@@ -1,7 +1,8 @@
 using GjkEvent.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using IronBarCode;
+using QRCoder;
+using System.Drawing;
 
 namespace GjkEvent.Controllers
 {
@@ -21,8 +22,10 @@ namespace GjkEvent.Controllers
 
         public IActionResult QrCode(string QrCode)
         {
-            ViewBag.QrCode = QRCodeWriter.CreateQrCode(QrCode).ToHtmlTag();
-            return View();
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(QrCode, QRCodeGenerator.ECCLevel.Q);
+            BitmapByteQRCode qrCode = new BitmapByteQRCode(qrCodeData);
+            return View(qrCode.GetGraphic(20));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

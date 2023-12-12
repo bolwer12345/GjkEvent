@@ -1,5 +1,12 @@
-﻿@{
+﻿@model byte[]
+@{
     ViewData["Title"] = "QrCode Generation";
 }
 <h1>@ViewData["Title"]</h1>
-@Html.Raw(ViewBag.QrCode);
+@{
+    if (Model != null)
+    {
+        <h3>QR Code Successfully Generated</h3>
+        <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model))" />
+    }
+}

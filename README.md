@@ -1,23 +1,37 @@
-To run the application, download .NET 8.0.0 SDK
 
-********
+<a name="readme"></a>
 
-In order to setup a functional database,
-head into the project folder from CLI
-and run following 2 commands:
+## About The Project
 
-dotnet ef migrations add InitialModel
-dotnet ef database update
+### Built With
 
-(if experiencing problems with dotnet
-not being able to find the project,
-specify the --project flag with the name of the project - GjkEvent)
+* [![C#Logo](https://www.memos.cz/wp-content/uploads/2023/03/asp.net_logo.png)](https://dotnet.microsoft.com/en-us/apps/aspnet)
 
-********
+<!-- GETTING STARTED -->
+## Getting Started
 
-For execution of the program, 
-navigate to the project folder and run in CLI:
+### Prerequisites
+*For Windows and Linux
+  ```sh
+  ./dotnet-install.sh --channel 8.0
+  ```
 
-dotnet run
+### Installation
 
-(if the host environment is set to development, as displayed by the logger, set the --environment flag to production) 
+1. Clone the repo
+   ```sh
+   git clone https://github.com/your_username_/Project-Name.git
+   ```
+2. Set up database
+   ```sh
+   dotnet ef migrations add InitialModel
+   dotnet ef database update
+   ```
+   
+### Execution
+```sh
+   dotnet run --environment production
+   ```
+
+### Author
+Good Luck
